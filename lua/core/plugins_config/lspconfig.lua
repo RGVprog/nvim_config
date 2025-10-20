@@ -1,22 +1,35 @@
 require("mason").setup()
 require("mason-lspconfig").setup({
-    ensure_installed = { "lua_ls", "glsl_analyzer", "clangd", "rust_analyzer", }
+    ensure_installed = { "lua_ls", "glsl_analyzer", "clangd", "rust_analyzer" },
+    automatic_installation = true,
 })
 
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-require("lspconfig").lua_ls.setup{
-    capabilities = capabilities
-}
-require("lspconfig").glsl_analyzer.setup{
-    capabilities = capabilities
-}
-require("lspconfig").clangd.setup{
-    capabilities = capabilities
-}
-require("lspconfig").rust_analyzer.setup{
-    capabilities = capabilities
-}
-require("lspconfig").pylyzer.setup{
-    capabilities = capabilities
-}
+vim.lsp.config("lua_ls", {
+    capabilities = capabilities,
+})
+
+vim.lsp.config("glsl_analyzer", {
+    capabilities = capabilities,
+})
+
+vim.lsp.config("clangd", {
+    capabilities = capabilities,
+})
+
+vim.lsp.config("rust_analyzer", {
+    capabilities = capabilities,
+})
+
+vim.lsp.config("pylyzer", {
+    capabilities = capabilities,
+})
+
+vim.lsp.enable({
+    "lua_ls",
+    "glsl_analyzer",
+    "clangd",
+    "rust_analyzer",
+    "pylyzer",
+})
